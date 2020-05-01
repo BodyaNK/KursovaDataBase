@@ -1,0 +1,6 @@
+C:\Users\bogda\Desktop\КУРСАЧ\BDApp\DB_Functionality\bin\Debug\DB_Functionality.dll
+C:\Users\bogda\Desktop\КУРСАЧ\BDApp\DB_Functionality\bin\Debug\DB_Functionality.pdb
+C:\Users\bogda\Desktop\КУРСАЧ\BDApp\DB_Functionality\obj\Debug\DB_Functionality.csprojAssemblyReference.cache
+C:\Users\bogda\Desktop\КУРСАЧ\BDApp\DB_Functionality\obj\Debug\DB_Functionality.csproj.CoreCompileInputs.cache
+C:\Users\bogda\Desktop\КУРСАЧ\BDApp\DB_Functionality\obj\Debug\DB_Functionality.dll
+C:\Users\bogda\Desktop\КУРСАЧ\BDApp\DB_Functionality\obj\Debug\DB_Functionality.pdb

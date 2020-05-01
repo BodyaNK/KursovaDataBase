@@ -1,0 +1,6 @@
+C:\Users\bogda\Desktop\КУРСАЧ\BDApp\UsersDB\bin\Debug\UsersDB.dll
+C:\Users\bogda\Desktop\КУРСАЧ\BDApp\UsersDB\bin\Debug\UsersDB.pdb
+C:\Users\bogda\Desktop\КУРСАЧ\BDApp\UsersDB\obj\Debug\UsersDB.csprojAssemblyReference.cache
+C:\Users\bogda\Desktop\КУРСАЧ\BDApp\UsersDB\obj\Debug\UsersDB.csproj.CoreCompileInputs.cache
+C:\Users\bogda\Desktop\КУРСАЧ\BDApp\UsersDB\obj\Debug\UsersDB.dll
+C:\Users\bogda\Desktop\КУРСАЧ\BDApp\UsersDB\obj\Debug\UsersDB.pdb

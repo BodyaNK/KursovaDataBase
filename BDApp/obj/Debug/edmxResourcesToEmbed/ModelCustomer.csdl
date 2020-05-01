@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_FlightsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AirCraft">
+    <Key>
+      <PropertyRef Name="AcID" />
+    </Key>
+    <Property Name="AcID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AcNumber" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Capacity" Type="Int32" Nullable="false" />
+    <Property Name="MfdBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MfdOn" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Flight_Schedule" Relationship="Self.FK_Flight_Schedule_AirCrafts" FromRole="AirCrafts" ToRole="Flight_Schedule" />
+  </EntityType>
+  <EntityType Name="AirFare">
+    <Key>
+      <PropertyRef Name="AfID" />
+    </Key>
+    <Property Name="AfID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Route" Type="Int32" Nullable="false" />
+    <Property Name="Fare" Type="Double" />
+    <Property Name="FSC" Type="Double" />
+    <NavigationProperty Name="Route1" Relationship="Self.FK_AirFare_Route" FromRole="AirFare" ToRole="Route" />
+    <NavigationProperty Name="Flight_Schedule" Relationship="Self.FK_Flight_Schedule_AirFare" FromRole="AirFare" ToRole="Flight_Schedule" />
+  </EntityType>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="BrID" />
+    </Key>
+    <Property Name="BrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Center" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="State1" Relationship="Self.FK_Branches_State" FromRole="Branches" ToRole="State" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Branches" FromRole="Branches" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="Charge">
+    <Key>
+      <PropertyRef Name="ChID" />
+    </Key>
+    <Property Name="ChID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_Charges" FromRole="Charges" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="Contact_Details">
+    <Key>
+      <PropertyRef Name="CnID" />
+    </Key>
+    <Property Name="CnID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cell" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tel" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="Street" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="State1" Relationship="Self.FK_Contact_Details_State" FromRole="Contact_Details" ToRole="State" />
+    <NavigationProperty Name="Passengers" Relationship="Self.FK_Passengers_Contact_Details" FromRole="Contact_Details" ToRole="Passengers" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CtID" />
+    </Key>
+    <Property Name="CtID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="States" Relationship="Self.FK_State_Countries" FromRole="Countries" ToRole="State" />
+  </EntityType>
+  <EntityType Name="Discount">
+    <Key>
+      <PropertyRef Name="DiID" />
+    </Key>
+    <Property Name="DiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_Discounts" FromRole="Discounts" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmpID" />
+    </Key>
+    <Property Name="EmpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Branch" Type="Int32" />
+    <Property Name="Designation" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tel" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="Ext" Type="Int32" />
+    <NavigationProperty Name="Branch1" Relationship="Self.FK_Employees_Branches" FromRole="Employees" ToRole="Branches" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_Employees" FromRole="Employees" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="Flight_Schedule">
+    <Key>
+      <PropertyRef Name="FlID" />
+    </Key>
+    <Property Name="FlID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlightDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Departure" Type="DateTime" Precision="3" />
+    <Property Name="Arrival" Type="DateTime" Precision="3" />
+    <Property Name="AirCraft" Type="Int32" Nullable="false" />
+    <Property Name="NetFare" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AirCraft1" Relationship="Self.FK_Flight_Schedule_AirCrafts" FromRole="Flight_Schedule" ToRole="AirCrafts" />
+    <NavigationProperty Name="AirFare" Relationship="Self.FK_Flight_Schedule_AirFare" FromRole="Flight_Schedule" ToRole="AirFare" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_Flight_Schedule" FromRole="Flight_Schedule" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="Passenger">
+    <Key>
+      <PropertyRef Name="PsID" />
+    </Key>
+    <Property Name="PsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="Nationalities" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contacts" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Contact_Details" Relationship="Self.FK_Passengers_Contact_Details" FromRole="Passengers" ToRole="Contact_Details" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_Passengers" FromRole="Passengers" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="Route">
+    <Key>
+      <PropertyRef Name="RtID" />
+    </Key>
+    <Property Name="RtID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Airport" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Destination" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RouteCode" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AirFares" Relationship="Self.FK_AirFare_Route" FromRole="Route" ToRole="AirFare" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StID" />
+    </Key>
+    <Property Name="StID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StateName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Branches" Relationship="Self.FK_Branches_State" FromRole="State" ToRole="Branches" />
+    <NavigationProperty Name="Contact_Details" Relationship="Self.FK_Contact_Details_State" FromRole="State" ToRole="Contact_Details" />
+    <NavigationProperty Name="Country1" Relationship="Self.FK_State_Countries" FromRole="State" ToRole="Countries" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="TsID" />
+    </Key>
+    <Property Name="TsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookingDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DepartureDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Passanger" Type="Int32" Nullable="false" />
+    <Property Name="Flight" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="Boolean" Nullable="false" />
+    <Property Name="Employee" Type="Int32" Nullable="false" />
+    <Property Name="Charges" Type="Int32" />
+    <Property Name="Discount" Type="Int32" />
+    <Property Name="Total" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Charge" Relationship="Self.FK_Transactions_Charges" FromRole="Transactions" ToRole="Charges" />
+    <NavigationProperty Name="Discount1" Relationship="Self.FK_Transactions_Discounts" FromRole="Transactions" ToRole="Discounts" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK_Transactions_Employees" FromRole="Transactions" ToRole="Employees" />
+    <NavigationProperty Name="Flight_Schedule" Relationship="Self.FK_Transactions_Flight_Schedule" FromRole="Transactions" ToRole="Flight_Schedule" />
+    <NavigationProperty Name="Passenger" Relationship="Self.FK_Transactions_Passengers" FromRole="Transactions" ToRole="Passengers" />
+  </EntityType>
+  <Association Name="FK_Flight_Schedule_AirCrafts">
+    <End Role="AirCrafts" Type="Self.AirCraft" Multiplicity="1" />
+    <End Role="Flight_Schedule" Type="Self.Flight_Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AirCrafts">
+        <PropertyRef Name="AcID" />
+      </Principal>
+      <Dependent Role="Flight_Schedule">
+        <PropertyRef Name="AirCraft" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AirFare_Route">
+    <End Role="Route" Type="Self.Route" Multiplicity="1" />
+    <End Role="AirFare" Type="Self.AirFare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Route">
+        <PropertyRef Name="RtID" />
+      </Principal>
+      <Dependent Role="AirFare">
+        <PropertyRef Name="Route" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flight_Schedule_AirFare">
+    <End Role="AirFare" Type="Self.AirFare" Multiplicity="1" />
+    <End Role="Flight_Schedule" Type="Self.Flight_Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AirFare">
+        <PropertyRef Name="AfID" />
+      </Principal>
+      <Dependent Role="Flight_Schedule">
+        <PropertyRef Name="NetFare" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Branches_State">
+    <End Role="State" Type="Self.State" Multiplicity="1" />
+    <End Role="Branches" Type="Self.Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StID" />
+      </Principal>
+      <Dependent Role="Branches">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employees_Branches">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="BrID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="Branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Charges">
+    <End Role="Charges" Type="Self.Charge" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Charges">
+        <PropertyRef Name="ChID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="Charges" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contact_Details_State">
+    <End Role="State" Type="Self.State" Multiplicity="1" />
+    <End Role="Contact_Details" Type="Self.Contact_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StID" />
+      </Principal>
+      <Dependent Role="Contact_Details">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Passengers_Contact_Details">
+    <End Role="Contact_Details" Type="Self.Contact_Details" Multiplicity="1" />
+    <End Role="Passengers" Type="Self.Passenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact_Details">
+        <PropertyRef Name="CnID" />
+      </Principal>
+      <Dependent Role="Passengers">
+        <PropertyRef Name="Contacts" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_State_Countries">
+    <End Role="Countries" Type="Self.Country" Multiplicity="1" />
+    <End Role="State" Type="Self.State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="CtID" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="Country" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Discounts">
+    <End Role="Discounts" Type="Self.Discount" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discounts">
+        <PropertyRef Name="DiID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="Discount" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Employees">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Flight_Schedule">
+    <End Role="Flight_Schedule" Type="Self.Flight_Schedule" Multiplicity="1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flight_Schedule">
+        <PropertyRef Name="FlID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="Flight" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Passengers">
+    <End Role="Passengers" Type="Self.Passenger" Multiplicity="1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Passengers">
+        <PropertyRef Name="PsID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="Passanger" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_FlightsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AirCrafts" EntityType="Self.AirCraft" />
+    <EntitySet Name="AirFares" EntityType="Self.AirFare" />
+    <EntitySet Name="Branches" EntityType="Self.Branch" />
+    <EntitySet Name="Charges" EntityType="Self.Charge" />
+    <EntitySet Name="Contact_Details" EntityType="Self.Contact_Details" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="Discounts" EntityType="Self.Discount" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Flight_Schedule" EntityType="Self.Flight_Schedule" />
+    <EntitySet Name="Passengers" EntityType="Self.Passenger" />
+    <EntitySet Name="Routes" EntityType="Self.Route" />
+    <EntitySet Name="States" EntityType="Self.State" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+    <AssociationSet Name="FK_Flight_Schedule_AirCrafts" Association="Self.FK_Flight_Schedule_AirCrafts">
+      <End Role="AirCrafts" EntitySet="AirCrafts" />
+      <End Role="Flight_Schedule" EntitySet="Flight_Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AirFare_Route" Association="Self.FK_AirFare_Route">
+      <End Role="Route" EntitySet="Routes" />
+      <End Role="AirFare" EntitySet="AirFares" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flight_Schedule_AirFare" Association="Self.FK_Flight_Schedule_AirFare">
+      <End Role="AirFare" EntitySet="AirFares" />
+      <End Role="Flight_Schedule" EntitySet="Flight_Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Branches_State" Association="Self.FK_Branches_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="Branches" EntitySet="Branches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employees_Branches" Association="Self.FK_Employees_Branches">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Charges" Association="Self.FK_Transactions_Charges">
+      <End Role="Charges" EntitySet="Charges" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contact_Details_State" Association="Self.FK_Contact_Details_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="Contact_Details" EntitySet="Contact_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Passengers_Contact_Details" Association="Self.FK_Passengers_Contact_Details">
+      <End Role="Contact_Details" EntitySet="Contact_Details" />
+      <End Role="Passengers" EntitySet="Passengers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_State_Countries" Association="Self.FK_State_Countries">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="State" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Discounts" Association="Self.FK_Transactions_Discounts">
+      <End Role="Discounts" EntitySet="Discounts" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Employees" Association="Self.FK_Transactions_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Flight_Schedule" Association="Self.FK_Transactions_Flight_Schedule">
+      <End Role="Flight_Schedule" EntitySet="Flight_Schedule" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Passengers" Association="Self.FK_Transactions_Passengers">
+      <End Role="Passengers" EntitySet="Passengers" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

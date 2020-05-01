@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1062
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDApp", "BDApp\BDApp.csproj", "{5B4092FF-EF9C-4D7B-94B9-B7C45C7B8FF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersDB", "UsersDB\UsersDB.csproj", "{31E60FEE-30AB-45D9-A8AA-4686E2E9E6BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB_Functionality", "DB_Functionality\DB_Functionality.csproj", "{F14047F0-A7FE-4E8C-A7F7-5624A973B3B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B4092FF-EF9C-4D7B-94B9-B7C45C7B8FF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B4092FF-EF9C-4D7B-94B9-B7C45C7B8FF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B4092FF-EF9C-4D7B-94B9-B7C45C7B8FF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B4092FF-EF9C-4D7B-94B9-B7C45C7B8FF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31E60FEE-30AB-45D9-A8AA-4686E2E9E6BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31E60FEE-30AB-45D9-A8AA-4686E2E9E6BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31E60FEE-30AB-45D9-A8AA-4686E2E9E6BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31E60FEE-30AB-45D9-A8AA-4686E2E9E6BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F14047F0-A7FE-4E8C-A7F7-5624A973B3B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F14047F0-A7FE-4E8C-A7F7-5624A973B3B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F14047F0-A7FE-4E8C-A7F7-5624A973B3B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F14047F0-A7FE-4E8C-A7F7-5624A973B3B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {049D6434-9FE9-4567-B60D-7CBE7DFA5D69}
+	EndGlobalSection
+EndGlobal
